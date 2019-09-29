@@ -19,6 +19,7 @@ export default class Board extends React.Component {
     renderRows() {
         let rows = []
         let iterator = 0
+
         for (let i = 0; i < 3; i++) {
             let fields = []
             for (let j = 0; j < 3; j++) {
@@ -27,8 +28,11 @@ export default class Board extends React.Component {
             }
             rows.push(<div key={i} className="board-row">{fields}</div>)
         }
-        return (<div>
-            {rows}
-        </div>)
+
+        return (
+            <div>
+                {rows}
+            </div>
+        )
     }
 }

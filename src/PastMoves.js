@@ -7,13 +7,8 @@ export default class PastMoves extends React.Component {
         return (
             history.map((step, move) => {
                 const desc = move ? 'Go to move #' + move : 'Go to start';
-                const squares = step.squares.map((square) => {
-                    if (square)
-                        return square
-                    else
-                        return "_"
-                })
-                let className = move === this.props.clickedIndex ? "bolded" : "";
+                const squares = this.mapSquares(step.squares)
+                let className = this.getClassName(move);
 
                 return (
                     <li key={move}>
@@ -28,11 +23,23 @@ export default class PastMoves extends React.Component {
         )
     }
 
+    mapSquares(squares) {
+        return squares.map((square) => {
+            if (square)
+                return square
+            else
+                return "_"
+        })
+    }
+
+    getClassName(move) {
+        return move === this.props.clickedIndex ? "bolded" : ""
+    }
+
     getTableContent(squares) {
-        const rows = this.renderRows(squares)
         return (
             <tbody>
-            {rows}
+            {this.renderRows(squares)}
             </tbody>
         )
     }
