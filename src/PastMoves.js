@@ -29,7 +29,7 @@ export default class PastMoves extends React.Component {
     }
 
     getTableContent(squares) {
-        const rows = this.getRows(squares)
+        const rows = this.renderRows(squares)
         return (
             <tbody>
             {rows}
@@ -37,17 +37,17 @@ export default class PastMoves extends React.Component {
         )
     }
 
-    getRows(squares) {
+    renderRows(squares) {
         let rows = [];
         let iterator = 0;
 
         for (let i = 0; i < 3; i++) {
             let fields = [];
             for (let j = 0; j < 3; j++) {
-                fields.push(<td>{squares[iterator]}</td>)
+                fields.push(<td key={j}>{squares[iterator]}</td>)
                 iterator++
             }
-            rows.push(<tr>{fields}</tr>)
+            rows.push(<tr key={i}>{fields}</tr>)
         }
 
         return rows;
