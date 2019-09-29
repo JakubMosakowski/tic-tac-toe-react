@@ -52,3 +52,7 @@ ol, ul {
 td {
     border: black solid 1px;
 }
+
+.bolded{
+    font-weight: bold;
+}

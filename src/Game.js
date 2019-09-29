@@ -34,6 +34,7 @@ export default class Game extends React.Component {
                         <PastMoves
                             history={history}
                             onClick={(step) => this.jumpTo(step)}
+                            clickedIndex={this.state.stepNumber}
                         />
                     </ol>
                 </div>
