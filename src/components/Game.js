@@ -3,6 +3,11 @@ import Board from './Board'
 import PastMoves from "./PastMoves"
 
 export default class Game extends React.Component {
+    DRAW = {
+        line: [],
+        winner: "Draw"
+    }
+
     constructor(props) {
         super(props)
         this.state = {
@@ -44,10 +49,13 @@ export default class Game extends React.Component {
     }
 
     getStatus(result) {
-        if (result)
-            return 'Winner: ' + result.winner;
-        else
+        if (!result)
             return `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
+
+        if (result === this.DRAW)
+            return result.winner
+
+        return 'Winner: ' + result.winner;
     }
 
     jumpTo(step) {
@@ -96,7 +104,15 @@ export default class Game extends React.Component {
                 }
             }
         }
+
+        if (this.isDraw(squares))
+            return this.DRAW
+
         return null;
+    }
+
+    isDraw(squares) {
+        return !squares.includes(null)
     }
 
 }
