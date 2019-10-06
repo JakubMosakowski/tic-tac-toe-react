@@ -32,6 +32,10 @@ ol, ul {
     width: 34px;
 }
 
+.highlighted {
+    color: red;
+}
+
 .square:focus {
     outline: none;
 }
@@ -53,6 +57,6 @@ td {
     border: black solid 1px;
 }
 
-.bolded{
+.bolded {
     font-weight: bold;
 }

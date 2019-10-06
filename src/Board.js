@@ -6,14 +6,18 @@ export default class Board extends React.Component {
         return (
             <Square
                 key={i}
+                isWinner={this.isSquareWinner(i)}
                 value={this.props.squares[i]}
                 onClick={() => this.props.onClick(i)}
             />
         )
     }
 
-    render() {
-        return this.renderRows()
+    isSquareWinner(i){
+        if(!this.props.result)
+            return false
+
+        return this.props.result.line.includes(i);
     }
 
     renderRows() {
@@ -34,5 +38,9 @@ export default class Board extends React.Component {
                 {rows}
             </div>
         )
+    }
+
+    render() {
+        return this.renderRows()
     }
 }
