@@ -1,18 +1,19 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class Square extends Component {
-    render() {
-        return (
-            <button
-                className={this.getClassName()}
-                onClick={this.props.onClick}>
-                {this.props.value}
-            </button>
-        );
-    }
-
-    getClassName() {
-        let basicClass = "square"
-        return this.props.isWinner ? basicClass + " highlighted" : basicClass
-    }
+export function Square(props) {
+    return (
+        <button
+            className={getClassName(props.isWinner)}
+            onClick={props.onClick}>
+            {props.value}
+        </button>
+    );
 }
+
+function getClassName(isWinner) {
+    let basicClass = "square"
+    return isWinner ? basicClass + " highlighted" : basicClass
+}
+
+export default Square
+
