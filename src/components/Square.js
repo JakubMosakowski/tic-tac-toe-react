@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Square(props) {
+export default function Square(props) {
     return (
         <button
             className={getClassName(props.isWinner)}
@@ -14,6 +14,4 @@ function getClassName(isWinner) {
     let basicClass = "square"
     return isWinner ? basicClass + " highlighted" : basicClass
 }
-
-export default Square
 

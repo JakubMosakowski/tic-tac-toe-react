@@ -1,9 +1,9 @@
 import React from 'react';
 import Board from './Board'
-import PastMoves from "./PastMoves"
 import ResultsCalculator from "../services/ResultsCalculator"
-export default class Game extends React.Component {
+import GameInfo from "./GameInfo"
 
+export default class Game extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -23,23 +23,13 @@ export default class Game extends React.Component {
 
         return (
             <div className="game">
-                <div className="game-board">
-                    <Board
-                        result={result}
-                        squares={current.squares}
-                        onClick={(i) => this.handleClick(i)}
-                    />
-                </div>
-                <div className="game-info">
-                    <div>{status}</div>
-                    <ol>
-                        <PastMoves
-                            history={history}
-                            onClick={(step) => this.jumpTo(step)}
-                            clickedIndex={this.state.stepNumber}
-                        />
-                    </ol>
-                </div>
+                <Board
+                    result={result}
+                    squares={current.squares}
+                    onClick={(i) => this.handleClick(i)}
+                />
+                <GameInfo status={status} history={history} onClick={(step) => this.jumpTo(step)}
+                          clickedIndex={this.state.stepNumber}/>
             </div>
         );
     }
@@ -68,7 +58,7 @@ export default class Game extends React.Component {
         const result = ResultsCalculator.calculateWinner(squares)
         const isFinished = !ResultsCalculator.isNotFinished(result)
 
-        if (isFinished|| squares[i]) {
+        if (isFinished || squares[i]) {
             return;
         }
         squares[i] = this.state.xIsNext ? 'X' : 'O';
