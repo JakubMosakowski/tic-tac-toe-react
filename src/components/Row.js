@@ -2,26 +2,19 @@ import Square from "./Square"
 import React from "react"
 
 export default function Row(props) {
-    let fields = []
     let iterator = props.rowNumber * 3
 
-    for (let j = 0; j < 3; j++) {
-        fields.push(renderSquare(iterator, props))
-        iterator++
-    }
-
-    return <div key={props.rowNumber} className="board-row">{fields}</div>
-}
-
-function renderSquare(i, {squares, onClick, result}) {
-    return (
-        <Square
-            key={i}
-            isWinner={isSquareWinner(i, result)}
-            value={squares[i]}
-            onClick={() => onClick(i)}
-        />
-    )
+    return <div key={props.rowNumber} className="board-row">
+        {[...Array(3).keys()].map(key => {
+            const i = key + iterator;
+            return <Square
+                key={i}
+                isWinner={isSquareWinner(i, props.result)}
+                value={props.squares[i]}
+                onClick={() => props.onClick(i)}
+            />
+        })}
+    </div>
 }
 
 function isSquareWinner(i, result) {
